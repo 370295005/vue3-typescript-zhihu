@@ -1,12 +1,21 @@
-import axios from 'axios'
-
-export function get (url: string, params?: { [key: string]: any }) {
-  return axios.get(url, { params }).then((res) => {
-    return Promise.resolve(res.data)
-  })
+import axios, { AxiosRequestConfig } from 'axios'
+const env = process.env.NODE_ENV
+const config: AxiosRequestConfig = {
+  baseURL: env === 'production' ? 'http://api.nash141.cloud' : 'localhost:8000',
+  timeout: 10000,
+  headers: {
+    Accept: 'application/json, text/plain, */*',
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest'
+  }
 }
-export function post (url: string, params?: { [key: string]: any }) {
-  return axios.post(url, params).then((res) => {
-    return Promise.resolve(res.data)
-  })
+const axiosInstance = axios.create()
+
+export async function get (url: string, params?: { [key: string]: any }) {
+  const res = await axiosInstance.get(url, { params })
+  return await Promise.resolve(res.data)
+}
+export async function post (url: string, params?: { [key: string]: any }) {
+  const res = await axiosInstance.post(url, params)
+  return await Promise.resolve(res.data)
 }

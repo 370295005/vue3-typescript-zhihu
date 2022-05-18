@@ -1,9 +1,3 @@
-/*
- * @Author: yeenjian<1793147874@qq.com>
- * @Date: 2020-08-05 11:31:49
- * @LastEditors: yeenjian
- * @LastEditTime: 2020-09-28 17:18:17
- */
 export default function parseTime (time = '', cFormat = '{y}-{m}-{d} {h}:{i}:{s}') {
   const format = cFormat
   // 兼容ios

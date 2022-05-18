@@ -1,24 +1,23 @@
 import { get, post } from '@/lib/request'
 import { Author, PostDetail } from '@/types'
-const api = 'http://localhost:9800'
 export function getUserList () {
-  return get(`${api}/userlist`)
+  return get('/userlist')
 }
 export function getRecommend () {
-  return get(`${api}/recommend`)
+  return get('/recommend')
 }
 export function login () {
-  return post(`${api}/login`)
+  return post('/login')
 }
 export function register () {
-  return post(`${api}/register`)
+  return post('/register')
 }
 export function uploadImg (data: FormData) {
-  return post(`${api}/upload`, data)
+  return post('/upload', data)
 }
 export function newPost (params: PostDetail) {
-  return post(`${api}/create`, params)
+  return post('/create', params)
 }
 export function editInfo (params: Author) {
-  return post(`${api}/edit`, params)
+  return post('/edit', params)
 }

@@ -9,21 +9,13 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-
-export default defineComponent({
-  setup () {
-    const router = useRouter()
-    const toWrite = () => {
-      router.push('/new')
-    }
-    return {
-      toWrite
-    }
-  }
-})
+const router = useRouter()
+const toWrite = () => {
+  router.push('/new')
+}
 </script>
 <style lang="stylus">
 .component-start-write
