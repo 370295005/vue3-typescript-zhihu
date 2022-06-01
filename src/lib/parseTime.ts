@@ -1,4 +1,4 @@
-export default function parseTime (time = '', cFormat = '{y}-{m}-{d} {h}:{i}:{s}') {
+export default function parseTime(time: string | number, cFormat: string = '{y}-{m}-{d} {h}:{i}:{s}') {
   const format = cFormat
   // 兼容ios
   if (typeof time === 'string') {

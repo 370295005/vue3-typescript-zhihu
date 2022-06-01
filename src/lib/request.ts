@@ -1,21 +1,30 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios from 'axios'
+export interface respondType<T> {
+  data?: T
+  errno: number
+}
 const env = process.env.NODE_ENV
-const config: AxiosRequestConfig = {
-  baseURL: 'http://api.nash141.cloud',
-  timeout: 10000,
-  headers: {
-    Accept: 'application/json, text/plain, */*',
-    'Content-Type': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest'
-  }
-}
-const axiosInstance = axios.create(config)
+const baseURL = env === 'development' ? 'http://localhost:8000' : 'http://api.nash141.cloud'
+const axiosInstance = axios.create({
+  baseURL,
+  timeout: 5000,
+  headers: { Accept: 'application/json, text/plain, */*', 'Content-Type': 'application/json' },
+  withCredentials: true
+})
 
-export async function get (url: string, params?: { [key: string]: any }) {
-  const res = await axiosInstance.get(url, { params })
-  return await Promise.resolve(res.data)
+function get<T>(url: string, payload?: { [key: string]: any }): Promise<T> {
+  return new Promise(async (resolve, reject) => {
+    const res = await axiosInstance.get(url, { params: payload })
+    if (res?.data) resolve(res.data)
+    else reject(res)
+  })
 }
-export async function post (url: string, params?: { [key: string]: any }) {
-  const res = await axiosInstance.post(url, params)
-  return await Promise.resolve(res.data)
+function post<T>(url: string, payload?: { [key: string]: any }): Promise<T> {
+  return new Promise(async (resolve, reject) => {
+    const res = await axiosInstance.post(url, payload)
+    if (res?.data) resolve(res.data)
+    else reject(res)
+  })
 }
+
+export { get, post }

@@ -1,26 +1,53 @@
-import { get, post } from '@/lib/request'
-import { Author, PostDetail } from '@/types'
-export function getUserList () {
-  return get('/userlist')
+import { get, post } from '../lib/request'
+
+export interface respondType<T> {
+  data?: T
+  errno: number
 }
-export function getBlogList () {
-  return get('/blog/list')
+export interface recommendListType {
+  recommendList?: {
+    id: number
+    title: string
+    content: string
+    createTime: number
+    author: string
+    recommend: string
+  }[]
 }
-export function getRecommend () {
-  return get('/recommend')
+export interface postDetailType {
+  id: number
+  title: string
+  content: string
+  createTime: number
+  author: string
+  recommend: number
 }
-export function login () {
-  return post('/login')
+export interface userInfoType {
+  id: number
+  nickname: string
+  description: string | null
+  avatar: string | null
 }
-export function register () {
-  return post('/register')
+export interface loginType {
+  username: string
 }
-export function uploadImg (data: FormData) {
-  return post('/upload', data)
+// 获取推荐列表
+export function getRecommedList() {
+  return get<respondType<recommendListType>>('/blog/recommend')
 }
-export function newPost (params: PostDetail) {
-  return post('/create', params)
+// 获取文章详情
+export function getPostDetail(id: number) {
+  return get<respondType<postDetailType>>(`/blog/detail/${id}`)
 }
-export function editInfo (params: Author) {
-  return post('/edit', params)
+// 获取用户信息
+export function getUserInfo(payload: object) {
+  return get<respondType<userInfoType>>('/user/userinfo', payload)
+}
+// 登录
+export function login(payload: object) {
+  return post<respondType<loginType>>('/user/login', payload)
+}
+// 注册
+export function register(payload: object) {
+  return post<respondType<loginType>>('/user/register', payload)
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="component-start-write">
+  <div class="start-write-component">
     <div class="py-5 text-center">
       <div class="col-lg-6 col-md-8 mx-auto">
         <img class="w-50" src="../assets/images/callout.svg" />
@@ -9,16 +9,22 @@
     </div>
   </div>
 </template>
+
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
-const router = useRouter()
+
 const toWrite = () => {
-  router.push('/new')
+  console.log(123)
 }
+
 </script>
-<style lang="stylus">
-.component-start-write
- .title
-  font-size 20px
-  font-weight bold
+
+<style lang="scss">
+.start-write-component {
+  width: 100%;
+  // background-color: #f8f9fa;
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
 </style>
