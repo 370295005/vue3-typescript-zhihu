@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 const env = process.env.NODE_ENV
 const config: AxiosRequestConfig = {
-  baseURL: env === 'production' ? 'http://api.nash141.cloud' : 'localhost:8000',
+  baseURL: 'http://api.nash141.cloud',
   timeout: 10000,
   headers: {
     Accept: 'application/json, text/plain, */*',
@@ -9,7 +9,7 @@ const config: AxiosRequestConfig = {
     'X-Requested-With': 'XMLHttpRequest'
   }
 }
-const axiosInstance = axios.create()
+const axiosInstance = axios.create(config)
 
 export async function get (url: string, params?: { [key: string]: any }) {
   const res = await axiosInstance.get(url, { params })

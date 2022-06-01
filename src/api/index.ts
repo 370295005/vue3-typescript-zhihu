@@ -3,6 +3,9 @@ import { Author, PostDetail } from '@/types'
 export function getUserList () {
   return get('/userlist')
 }
+export function getBlogList () {
+  return get('/blog/list')
+}
 export function getRecommend () {
   return get('/recommend')
 }

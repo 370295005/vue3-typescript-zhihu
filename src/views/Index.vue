@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import { defineComponent, onActivated, ref } from 'vue'
 import StartWrite from '@/components/StartWrite.vue'
-import { getRecommend } from '@/api'
+import { getRecommend, getBlogList } from '@/api'
 import ColumnList from '@/components/ColumnList.vue'
 import { useRoute } from 'vue-router'
 import { ColumProps } from '@/types'
@@ -16,7 +16,8 @@ import { FLIPPED_ALIAS_KEYS } from '@babel/types'
 const store = useStore()
 const data = ref<ColumProps[]>([])
 const initData = async () => {
-  // data.value = await getRecommend()
+  const data = await getBlogList()
+  console.log(data)
   setTimeout(() => {
     store.dispatch('updateLoading', false)
   }, 1000)

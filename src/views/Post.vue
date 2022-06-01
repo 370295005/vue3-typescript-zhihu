@@ -28,7 +28,7 @@ import { useStore } from 'vuex'
 export default defineComponent({
   setup () {
     const store = useStore()
-    const authorInfo = ref<Author | null>({
+    const authorInfo = ref<Author>({
       avatar: '',
       description: '',
       nickname: '',
