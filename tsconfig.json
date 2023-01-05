@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "composite": false,
+    "target": "ES5",
     "module": "esnext",
     "moduleResolution": "node",
     "strict": false,
@@ -18,7 +19,7 @@
     "allowJs": false,
     "resolveJsonModule": true,
     "lib": ["dom", "esnext"],
-    "incremental": true,
+    "incremental": false,
     "paths": {
       "/@/*": ["src/*"],
       "@build/*": ["build/*"],
@@ -27,13 +28,6 @@
     "types": ["node", "vite/client", "element-plus/global"],
     "typeRoots": ["./node_modules/@types/", "./types"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "types/*.d.ts",
-    "mock/*.ts",
-    "vite.config.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/*.d.ts", "mock/*.ts", "vite.config.ts"],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }
